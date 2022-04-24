@@ -1,13 +1,20 @@
 package com.company;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
-class Controleur implements ActionListener, KeyListener {
+class Controleur extends MouseAdapter implements ActionListener, KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
+    }
+
+    public void mousePressed(MouseEvent e) {
+        int x = (e.getX()/12) + 1;
+        int y = (e.getY()/12) + 1;
+        if(modele.getSacDeSable()){
+            modele.assecherCellule(x,y);
+            modele.setSacDeSable(false);
+        }
+        System.out.println("coord x : "+x+" coord y : "+y);
     }
 
     @Override
@@ -153,6 +160,9 @@ class Controleur implements ActionListener, KeyListener {
 
                     break;
 
+                case KeyEvent.VK_R:
+                    modele.setSacDeSable(true);
+                    ajouterActions();
                 case KeyEvent.VK_1:
                   if( modele.EchangeDeCles(getJoueur(idJoueurActif),0))
                   {
@@ -303,3 +313,4 @@ class Controleur implements ActionListener, KeyListener {
         modele.setActionsRestantes(maxNbActions-compteursActions);
     }
 }
+

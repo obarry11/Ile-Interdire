@@ -2,15 +2,19 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 class VueGrille extends JPanel implements Observer {
     /** On maintient une référence vers le modèle. */
     private CModele modele;
     /** Définition d'une taille (en pixels) pour l'affichage des cellules. */
     public final static int TAILLE = 12;
+	public Controleur crtl;
 
     /** Constructeur. */
     public VueGrille(CModele modele) {
@@ -25,6 +29,8 @@ class VueGrille extends JPanel implements Observer {
 	Dimension dim = new Dimension(TAILLE*CModele.LARGEUR+400,
 				      TAILLE*CModele.HAUTEUR);
 	this.setPreferredSize(dim);
+	Controleur crtl = new Controleur(modele);
+	this.addMouseListener( crtl);
     }
 
     /**

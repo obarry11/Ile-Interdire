@@ -10,8 +10,15 @@ class CModele extends Observable {
 	//public static final int HAUTEUR=5, LARGEUR= 10;
 	int hauteurHeliport = HAUTEUR/2;
 	int largeurHeliport = LARGEUR/2;
+	public boolean sacDeSable = false;
 	ArrayList<Pair<Integer,Integer>> joeursCoords= new ArrayList< Pair<Integer,Integer>>();
 	private Cellule heliport = new Heliport(this,hauteurHeliport, largeurHeliport);//L'heliport est au centre
+
+	public boolean getSacDeSable(){return sacDeSable;}
+
+	public void setSacDeSable(boolean sacDeSable) {
+		this.sacDeSable = sacDeSable;
+	}
 
 	public int getMaxJoueurs() {
 		return maxJoueurs;
